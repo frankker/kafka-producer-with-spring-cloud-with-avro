@@ -1,5 +1,5 @@
 server:
-  port: 8099
+  port: 8055
 spring:
   cloud:
     schemaRegistryClient:
@@ -19,6 +19,10 @@ spring:
 #          binder: kafka
         alert-output:
           destination: alert10
+          content-type: application/*+avro
+          binder: kafka
+        asset-output:
+          destination: asset003
           content-type: application/*+avro
           binder: kafka
       #        asset-input2:

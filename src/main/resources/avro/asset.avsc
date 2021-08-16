@@ -8,6 +8,10 @@
       "type": "long"
     },
     {
+      "name": "tenantId",
+      "type": "long"
+    },
+    {
       "name": "name",
       "type": "string"
     }]

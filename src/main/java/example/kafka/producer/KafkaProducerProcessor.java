@@ -17,31 +17,21 @@ public class KafkaProducerProcessor {
   @Autowired
   private KafkaProcessor processor;
 
-  public void produceAssetMessage(AssetDto assetDto2) {
-    AlertDto alertDto = new AlertDto();
-    alertDto.setId(3L);
-    alertDto.setName("name");
-    alertDto.setTopic("asset4");
-
-    Message<AlertDto> message =
+  public void produceAssetMessage(AssetDto assetDto) {
+    Message<AssetDto> message =
         MessageBuilder
-            .withPayload(alertDto)
-            .setHeader(KafkaHeaders.MESSAGE_KEY, 3L)
+            .withPayload(assetDto)
+            .setHeader(KafkaHeaders.MESSAGE_KEY, assetDto.getId())
             .build();
 
-    processor.outEvent().send(message);
+    processor.assetEventSending().send(message);
   }
 
-  public void produceAlertDetails(long alertId, String topic, String name) {
-    AlertDto alertDto = new AlertDto();
-    alertDto.setId(alertId);
-    alertDto.setName(name);
-    alertDto.setTopic(topic);
-
+  public void produceAlertDetails(AlertDto alertDto) {
     Message<AlertDto> message =
         MessageBuilder
             .withPayload(alertDto)
-            .setHeader(KafkaHeaders.MESSAGE_KEY, alertId)
+            .setHeader(KafkaHeaders.MESSAGE_KEY, alertDto.getId())
             .build();
 
     processor.outEvent()

@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4295282958876975741L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetDto\",\"namespace\":\"example.kafka.dto\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
+  private static final long serialVersionUID = -1509082640070109467L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AssetDto\",\"namespace\":\"example.kafka.dto\",\"fields\":[{\"name\":\"id\",\"type\":\"long\"},{\"name\":\"tenantId\",\"type\":\"long\"},{\"name\":\"name\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -72,6 +72,7 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
   }
 
   @Deprecated public long id;
+  @Deprecated public long tenantId;
   @Deprecated public java.lang.String name;
 
   /**
@@ -84,10 +85,12 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
   /**
    * All-args constructor.
    * @param id The new value for id
+   * @param tenantId The new value for tenantId
    * @param name The new value for name
    */
-  public AssetDto(java.lang.Long id, java.lang.String name) {
+  public AssetDto(java.lang.Long id, java.lang.Long tenantId, java.lang.String name) {
     this.id = id;
+    this.tenantId = tenantId;
     this.name = name;
   }
 
@@ -97,7 +100,8 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
   public java.lang.Object get(int field$) {
     switch (field$) {
     case 0: return id;
-    case 1: return name;
+    case 1: return tenantId;
+    case 2: return name;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -107,7 +111,8 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
     case 0: id = (java.lang.Long)value$; break;
-    case 1: name = value$ != null ? value$.toString() : null; break;
+    case 1: tenantId = (java.lang.Long)value$; break;
+    case 2: name = value$ != null ? value$.toString() : null; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -127,6 +132,23 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
    */
   public void setId(long value) {
     this.id = value;
+  }
+
+  /**
+   * Gets the value of the 'tenantId' field.
+   * @return The value of the 'tenantId' field.
+   */
+  public long getTenantId() {
+    return tenantId;
+  }
+
+
+  /**
+   * Sets the value of the 'tenantId' field.
+   * @param value the value to set.
+   */
+  public void setTenantId(long value) {
+    this.tenantId = value;
   }
 
   /**
@@ -188,6 +210,7 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
     implements org.apache.avro.data.RecordBuilder<AssetDto> {
 
     private long id;
+    private long tenantId;
     private java.lang.String name;
 
     /** Creates a new Builder */
@@ -205,9 +228,13 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.tenantId)) {
+        this.tenantId = data().deepCopy(fields()[1].schema(), other.tenantId);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
+      }
+      if (isValidValue(fields()[2], other.name)) {
+        this.name = data().deepCopy(fields()[2].schema(), other.name);
+        fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
     }
 
@@ -221,9 +248,13 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
         this.id = data().deepCopy(fields()[0].schema(), other.id);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.name)) {
-        this.name = data().deepCopy(fields()[1].schema(), other.name);
+      if (isValidValue(fields()[1], other.tenantId)) {
+        this.tenantId = data().deepCopy(fields()[1].schema(), other.tenantId);
         fieldSetFlags()[1] = true;
+      }
+      if (isValidValue(fields()[2], other.name)) {
+        this.name = data().deepCopy(fields()[2].schema(), other.name);
+        fieldSetFlags()[2] = true;
       }
     }
 
@@ -267,6 +298,45 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
     }
 
     /**
+      * Gets the value of the 'tenantId' field.
+      * @return The value.
+      */
+    public long getTenantId() {
+      return tenantId;
+    }
+
+
+    /**
+      * Sets the value of the 'tenantId' field.
+      * @param value The value of 'tenantId'.
+      * @return This builder.
+      */
+    public example.kafka.dto.AssetDto.Builder setTenantId(long value) {
+      validate(fields()[1], value);
+      this.tenantId = value;
+      fieldSetFlags()[1] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'tenantId' field has been set.
+      * @return True if the 'tenantId' field has been set, false otherwise.
+      */
+    public boolean hasTenantId() {
+      return fieldSetFlags()[1];
+    }
+
+
+    /**
+      * Clears the value of the 'tenantId' field.
+      * @return This builder.
+      */
+    public example.kafka.dto.AssetDto.Builder clearTenantId() {
+      fieldSetFlags()[1] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'name' field.
       * @return The value.
       */
@@ -281,9 +351,9 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
       * @return This builder.
       */
     public example.kafka.dto.AssetDto.Builder setName(java.lang.String value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.name = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -292,7 +362,7 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
       * @return True if the 'name' field has been set, false otherwise.
       */
     public boolean hasName() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -302,7 +372,7 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
       */
     public example.kafka.dto.AssetDto.Builder clearName() {
       name = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -312,7 +382,8 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
       try {
         AssetDto record = new AssetDto();
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.Long) defaultValue(fields()[0]);
-        record.name = fieldSetFlags()[1] ? this.name : (java.lang.String) defaultValue(fields()[1]);
+        record.tenantId = fieldSetFlags()[1] ? this.tenantId : (java.lang.Long) defaultValue(fields()[1]);
+        record.name = fieldSetFlags()[2] ? this.name : (java.lang.String) defaultValue(fields()[2]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -347,6 +418,8 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
   {
     out.writeLong(this.id);
 
+    out.writeLong(this.tenantId);
+
     out.writeString(this.name);
 
   }
@@ -358,16 +431,22 @@ public class AssetDto extends org.apache.avro.specific.SpecificRecordBase implem
     if (fieldOrder == null) {
       this.id = in.readLong();
 
+      this.tenantId = in.readLong();
+
       this.name = in.readString();
 
     } else {
-      for (int i = 0; i < 2; i++) {
+      for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readLong();
           break;
 
         case 1:
+          this.tenantId = in.readLong();
+          break;
+
+        case 2:
           this.name = in.readString();
           break;
 

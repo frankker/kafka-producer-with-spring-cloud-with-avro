@@ -20,7 +20,7 @@ public class MainController {
   }
 
   @PutMapping("/createAsset")
-  public void createMessage(@RequestBody() AssetDto assetDto) throws InterruptedException {
+  public void createMessage(@RequestBody() AssetDto assetDto) {
     System.out.println("Sending assetDto " + assetDto.getId());
     kafkaProducerProcessor.produceAssetMessage(assetDto);
     System.out.println("assetDto sent " + assetDto.getId());
@@ -29,8 +29,8 @@ public class MainController {
   @PutMapping("/createAlert")
   public void createMessage(@RequestBody() AlertDto alertDto) throws InterruptedException {
     System.out.println("Sending alertDto " + alertDto.getId());
-    kafkaProducerProcessor.produceAlertDetails(
-        alertDto.getId(), alertDto.getTopic(), alertDto.getName());
+//    kafkaProducerProcessor.produceAlertDetails(alertDto);
+    kafkaProducerProcessor.produceAlertDetails(alertDto);
     System.out.println("alertDto sent " + alertDto.getId());
   }
 }

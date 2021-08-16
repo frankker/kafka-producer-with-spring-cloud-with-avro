@@ -9,7 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public interface KafkaProcessor {
   String ALERT_OUTPUT = "alert-output";
+  String ASSET_OUTPUT = "asset-output";
 
   @Output(ALERT_OUTPUT)
   MessageChannel outEvent();
+
+  @Output(ASSET_OUTPUT)
+  MessageChannel assetEventSending();
 }

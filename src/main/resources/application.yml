@@ -23,6 +23,8 @@ spring:
           binder: kafka
         asset-output:
           destination: asset003
+          producer:
+            partition-count: 3
           content-type: application/*+avro
           binder: kafka
       #        asset-input2:
@@ -38,12 +40,10 @@ spring:
       #          content-type: application/*+avrob
       kafka:
         binder:
+          autoAddPartitions: true
           brokers: localhost:9092
-          configuration:
-            value:
-              deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
-              serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
           producer-properties:
+            partition-count: 4
             key.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
             value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
             schema.registry.url: http://localhost:8081
